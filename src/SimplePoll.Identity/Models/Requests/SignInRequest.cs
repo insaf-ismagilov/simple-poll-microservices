@@ -1,4 +1,4 @@
-﻿namespace SimplePoll.Identity.Models
+﻿namespace SimplePoll.Identity.Models.Requests
 {
 	public class SignInRequest
 	{
