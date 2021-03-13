@@ -1,8 +1,7 @@
 ﻿using System;
 using SimplePoll.Common.Models;
-using SimplePoll.Identity.Models;
 
-namespace SimplePoll.Identity.Entities
+namespace SimplePoll.Identity.Domain.Entities
 {
 	public class User : BaseEntity<int>
 	{

@@ -4,12 +4,12 @@ using AutoMapper;
 using MediatR;
 using SimplePoll.Common.DataAccess;
 using SimplePoll.Common.DataAccess.Utils;
+using SimplePoll.Identity.Application.Models.DataAccess;
+using SimplePoll.Identity.Application.Queries;
 using SimplePoll.Identity.Constants;
-using SimplePoll.Identity.Entities;
-using SimplePoll.Identity.Models.DataAccess;
-using SimplePoll.Identity.Queries;
+using SimplePoll.Identity.Domain.Entities;
 
-namespace SimplePoll.Identity.Handlers
+namespace SimplePoll.Identity.Application.Handlers
 {
 	public class GetUserByEmailQueryHandler : IRequestHandler<GetUserByEmailQuery, User>
 	{

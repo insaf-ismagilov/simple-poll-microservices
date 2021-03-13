@@ -1,8 +1,8 @@
 ﻿using System;
 using SimplePoll.Common.Models;
-using SimplePoll.Identity.Enums;
+using SimplePoll.Identity.Domain.Enums;
 
-namespace SimplePoll.Identity.Entities
+namespace SimplePoll.Identity.Domain.Entities
 {
 	public class UserRole : BaseEntity<UserRoleId>
 	{

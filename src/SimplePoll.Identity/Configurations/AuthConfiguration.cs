@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SimplePoll.Identity.Options;
+using SimplePoll.Identity.Application.Options;
 
 namespace SimplePoll.Identity.Configurations
 {

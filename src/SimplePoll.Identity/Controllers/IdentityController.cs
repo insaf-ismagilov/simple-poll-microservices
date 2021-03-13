@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using SimplePoll.Identity.Models;
-using SimplePoll.Identity.Models.Requests;
-using SimplePoll.Identity.Services;
+using SimplePoll.Identity.Application.Models;
+using SimplePoll.Identity.Application.Models.Requests;
+using SimplePoll.Identity.Application.Services;
 
 namespace SimplePoll.Identity.Controllers
 {

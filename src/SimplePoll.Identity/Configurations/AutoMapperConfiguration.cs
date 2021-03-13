@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
-using SimplePoll.Identity.Profiles;
+using SimplePoll.Identity.Application.Profiles;
 
 namespace SimplePoll.Identity.Configurations
 {
-	internal static class AutoMapperCOnfiguration
+	internal static class AutoMapperConfiguration
 	{
 		internal static IServiceCollection ConfigureAutoMapper(this IServiceCollection services)
 		{

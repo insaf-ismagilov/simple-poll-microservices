@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SimplePoll.Identity.Models.DataAccess
+namespace SimplePoll.Identity.Application.Models.DataAccess
 {
 	public class UserRecord
 	{

@@ -1,4 +1,4 @@
-﻿namespace SimplePoll.Identity.Enums
+﻿namespace SimplePoll.Identity.Domain.Enums
 {
 	public enum UserRoleId
 	{

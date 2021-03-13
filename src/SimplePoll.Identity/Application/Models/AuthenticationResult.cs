@@ -1,4 +1,4 @@
-﻿namespace SimplePoll.Identity.Models
+﻿namespace SimplePoll.Identity.Application.Models
 {
 	public class AuthenticationResult
 	{

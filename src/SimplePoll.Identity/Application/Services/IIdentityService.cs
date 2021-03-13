@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using SimplePoll.Common.Models;
-using SimplePoll.Identity.Models;
-using SimplePoll.Identity.Models.Requests;
+using SimplePoll.Identity.Application.Models;
+using SimplePoll.Identity.Application.Models.Requests;
 
-namespace SimplePoll.Identity.Services
+namespace SimplePoll.Identity.Application.Services
 {
 	public interface IIdentityService
 	{

@@ -1,4 +1,4 @@
-﻿namespace SimplePoll.Identity.Options
+﻿namespace SimplePoll.Identity.Application.Options
 {
 	public class JwtSettings
 	{

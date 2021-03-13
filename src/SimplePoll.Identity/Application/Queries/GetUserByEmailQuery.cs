@@ -1,8 +1,7 @@
 ﻿using MediatR;
-using SimplePoll.Identity.Entities;
-using SimplePoll.Identity.Models;
+using SimplePoll.Identity.Domain.Entities;
 
-namespace SimplePoll.Identity.Queries
+namespace SimplePoll.Identity.Application.Queries
 {
 	public class GetUserByEmailQuery : IRequest<User>
 	{

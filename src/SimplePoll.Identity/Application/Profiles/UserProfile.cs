@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using SimplePoll.Identity.Entities;
-using SimplePoll.Identity.Enums;
-using SimplePoll.Identity.Models.DataAccess;
-using SimplePoll.Identity.Models.Requests;
-using SimplePoll.Identity.Queries;
+using SimplePoll.Identity.Application.Models.DataAccess;
+using SimplePoll.Identity.Application.Models.Requests;
+using SimplePoll.Identity.Application.Queries;
+using SimplePoll.Identity.Domain.Entities;
+using SimplePoll.Identity.Domain.Enums;
 
-namespace SimplePoll.Identity.Profiles
+namespace SimplePoll.Identity.Application.Profiles
 {
 	public class UserProfile : Profile
 	{

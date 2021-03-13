@@ -4,11 +4,10 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using SimplePoll.Identity.Entities;
-using SimplePoll.Identity.Models;
-using SimplePoll.Identity.Options;
+using SimplePoll.Identity.Application.Options;
+using SimplePoll.Identity.Domain.Entities;
 
-namespace SimplePoll.Identity.Services
+namespace SimplePoll.Identity.Application.Services
 {
 	public class JwtGenerator : IJwtGenerator
 	{

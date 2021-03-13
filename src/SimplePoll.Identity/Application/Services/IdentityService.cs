@@ -4,12 +4,12 @@ using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using SimplePoll.Common.Models;
-using SimplePoll.Identity.Entities;
-using SimplePoll.Identity.Models;
-using SimplePoll.Identity.Models.Requests;
-using SimplePoll.Identity.Queries;
+using SimplePoll.Identity.Application.Models;
+using SimplePoll.Identity.Application.Models.Requests;
+using SimplePoll.Identity.Application.Queries;
+using SimplePoll.Identity.Domain.Entities;
 
-namespace SimplePoll.Identity.Services
+namespace SimplePoll.Identity.Application.Services
 {
 	public class IdentityService : IIdentityService
 	{
