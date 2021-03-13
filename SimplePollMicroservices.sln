@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{98E986FC-1ACF-44FA-B271-A9A554DB1239}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplePoll.Identity", "src\SimplePoll.Identity\SimplePoll.Identity.csproj", "{965EA356-3E0F-4618-B5A6-2166EC6AE8D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplePoll.Common.DataAccess", "src\SimplePoll.Common.DataAccess\SimplePoll.Common.DataAccess.csproj", "{36784FC3-933A-41D3-A50F-F150D1F10A24}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{965EA356-3E0F-4618-B5A6-2166EC6AE8D8} = {98E986FC-1ACF-44FA-B271-A9A554DB1239}
+		{36784FC3-933A-41D3-A50F-F150D1F10A24} = {98E986FC-1ACF-44FA-B271-A9A554DB1239}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{965EA356-3E0F-4618-B5A6-2166EC6AE8D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{965EA356-3E0F-4618-B5A6-2166EC6AE8D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{965EA356-3E0F-4618-B5A6-2166EC6AE8D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{965EA356-3E0F-4618-B5A6-2166EC6AE8D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36784FC3-933A-41D3-A50F-F150D1F10A24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36784FC3-933A-41D3-A50F-F150D1F10A24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36784FC3-933A-41D3-A50F-F150D1F10A24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36784FC3-933A-41D3-A50F-F150D1F10A24}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
