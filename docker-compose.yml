@@ -1,0 +1,11 @@
+﻿version: "3.9"
+
+services:
+  identity:
+    build:
+      context: .
+      dockerfile: src/SimplePoll.Identity/Dockerfile
+  editor:
+    build:
+      context: .
+      dockerfile: src/SimplePoll.Editor/Dockerfile

@@ -44,7 +44,7 @@ namespace SimplePoll.Identity
 				app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SimplePoll.Identity v1"));
 			}
 
-			app.UseHttpsRedirection();
+			// app.UseHttpsRedirection();
 
 			app.UseRouting();
 
