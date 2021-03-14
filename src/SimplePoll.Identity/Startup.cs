@@ -22,15 +22,15 @@ namespace SimplePoll.Identity
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddControllers().AddFluentValidation(configuration => configuration.ImplicitlyValidateChildProperties = true);;
-			services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "SimplePoll.Identity", Version = "v1"}); });
+			services.AddControllers().AddFluentValidation(configuration => configuration.ImplicitlyValidateChildProperties = true);
 
 			services
 				.ConfigureDb(Configuration)
 				.ConfigureDi()
 				.ConfigureAutoMapper()
 				.ConfigureAuth(Configuration)
-				.ConfigureValidators();
+				.ConfigureValidators()
+				.ConfigureSwagger();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +48,7 @@ namespace SimplePoll.Identity
 
 			app.UseRouting();
 
+			app.UseAuthentication();
 			app.UseAuthorization();
 
 			app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
