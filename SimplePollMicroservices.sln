@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplePoll.Common.DataAcces
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplePoll.Common", "src\SimplePoll.Common\SimplePoll.Common.csproj", "{FC840B11-2A3B-48D6-8E42-99E470B09C21}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplePoll.Editor", "src\SimplePoll.Editor\SimplePoll.Editor.csproj", "{3B2FF8BB-9864-4CE5-AB84-ED465C756ACA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,7 @@ Global
 		{965EA356-3E0F-4618-B5A6-2166EC6AE8D8} = {98E986FC-1ACF-44FA-B271-A9A554DB1239}
 		{36784FC3-933A-41D3-A50F-F150D1F10A24} = {98E986FC-1ACF-44FA-B271-A9A554DB1239}
 		{FC840B11-2A3B-48D6-8E42-99E470B09C21} = {98E986FC-1ACF-44FA-B271-A9A554DB1239}
+		{3B2FF8BB-9864-4CE5-AB84-ED465C756ACA} = {98E986FC-1ACF-44FA-B271-A9A554DB1239}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{965EA356-3E0F-4618-B5A6-2166EC6AE8D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -31,5 +34,9 @@ Global
 		{FC840B11-2A3B-48D6-8E42-99E470B09C21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC840B11-2A3B-48D6-8E42-99E470B09C21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC840B11-2A3B-48D6-8E42-99E470B09C21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B2FF8BB-9864-4CE5-AB84-ED465C756ACA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B2FF8BB-9864-4CE5-AB84-ED465C756ACA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B2FF8BB-9864-4CE5-AB84-ED465C756ACA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B2FF8BB-9864-4CE5-AB84-ED465C756ACA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
