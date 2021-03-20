@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Options;
@@ -11,9 +13,9 @@ namespace SimplePoll.Identity.Application.Services
 {
 	public class JwtGenerator : IJwtGenerator
 	{
-		private readonly JwtSettings _jwtSettings;
+		private readonly IdentityJwtSettings _jwtSettings;
 
-		public JwtGenerator(IOptions<JwtSettings> jwtSettings)
+		public JwtGenerator(IOptions<IdentityJwtSettings> jwtSettings)
 		{
 			_jwtSettings = jwtSettings.Value;
 		}
@@ -29,8 +31,7 @@ namespace SimplePoll.Identity.Application.Services
 
 			var jwtSecurityToken = new JwtSecurityToken(
 				_jwtSettings.Issuer,
-				_jwtSettings.Audience,
-				claims,
+				claims: claims,
 				expires: DateTime.UtcNow.AddSeconds(_jwtSettings.LifetimeSeconds),
 				signingCredentials: credentials
 			);
@@ -40,13 +41,15 @@ namespace SimplePoll.Identity.Application.Services
 			return token;
 		}
 
-		private static Claim[] GetClaims(User user)
+		private IEnumerable<Claim> GetClaims(User user)
 		{
-			var claims = new[]
+			var claims = new List<Claim>
 			{
-				new Claim(ClaimTypes.Email, user.Email),
-				new Claim(ClaimTypes.Role, user.Role?.Name ?? string.Empty)
+				new(ClaimTypes.Email, user.Email),
+				new(ClaimTypes.Role, user.Role?.Name ?? string.Empty)
 			};
+
+			claims.AddRange(_jwtSettings.Audiences.Select(audience => new Claim(JwtRegisteredClaimNames.Aud, audience)));
 
 			return claims;
 		}

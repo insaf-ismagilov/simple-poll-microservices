@@ -3,16 +3,16 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using SimplePoll.Identity.Application.Options;
+using SimplePoll.Common.Authentication.Options;
 
-namespace SimplePoll.Identity.Configurations
+namespace SimplePoll.Common.Authentication.Extensions
 {
-	internal static class AuthConfiguration
+	public static class AuthConfiguration
 	{
 		public static IServiceCollection ConfigureAuth(this IServiceCollection services, IConfiguration configuration)
 		{
-			var jwtSettingsSection = configuration.GetSection(nameof(IdentityJwtSettings));
-			services.Configure<IdentityJwtSettings>(jwtSettingsSection);
+			var jwtSettingsSection = configuration.GetSection(nameof(JwtSettings));
+			services.Configure<JwtSettings>(jwtSettingsSection);
 
 			services
 				.AddAuthentication(options =>
@@ -27,10 +27,12 @@ namespace SimplePoll.Identity.Configurations
 					options.TokenValidationParameters = new TokenValidationParameters
 					{
 						ValidateIssuer = true,
+						ValidateAudience = true,
 						ValidateLifetime = true,
 						ValidateIssuerSigningKey = true,
-						ValidIssuer = jwtSettingsSection[nameof(IdentityJwtSettings.Issuer)],
-						IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettingsSection[nameof(IdentityJwtSettings.SigningKey)]))
+						ValidIssuer = jwtSettingsSection[nameof(JwtSettings.Issuer)],
+						ValidAudience = jwtSettingsSection[nameof(JwtSettings.Audience)],
+						IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettingsSection[nameof(JwtSettings.SigningKey)]))
 					};
 				});
 			
