@@ -1,15 +1,6 @@
-﻿using System.Collections.Generic;
-using MediatR;
-using SimplePoll.Editor.Application.Models;
-using SimplePoll.Editor.Domain.Enums;
-
-namespace SimplePoll.Editor.Application.Commands
+﻿namespace SimplePoll.Editor.Application.Commands
 {
-	public class CreatePollCommand : IRequest<int>
+	public class CreatePollCommand : SavePollCommand<int>
 	{
-		public string Title { get; set; }
-		public PollStatus Status { get; set; }
-		public PollType Type { get; set; }
-		public ICollection<PollOptionDto> Options { get; set; }
 	}
 }
