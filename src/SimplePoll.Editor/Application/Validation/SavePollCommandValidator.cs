@@ -12,7 +12,7 @@ namespace SimplePoll.Editor.Application.Validation
 			RuleFor(x => x.Status).IsInEnum();
 			RuleFor(x => x.Type).IsInEnum();
 			RuleFor(x => x.Options).NotEmpty();
-			RuleForEach(x => x.Options).SetValidator(new SavePollOptionRequestValidator());
+			RuleForEach(x => x.Options).SetValidator(new PollOptionDtoValidator());
 		}
 	}
 
@@ -24,9 +24,9 @@ namespace SimplePoll.Editor.Application.Validation
 	{
 	}
 
-	public class SavePollOptionRequestValidator : AbstractValidator<PollOptionDto>
+	public class PollOptionDtoValidator : AbstractValidator<PollOptionDto>
 	{
-		public SavePollOptionRequestValidator()
+		public PollOptionDtoValidator()
 		{
 			RuleFor(x => x.Text).NotEmpty();
 			RuleFor(x => x.Value).NotEmpty();
