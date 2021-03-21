@@ -12,7 +12,7 @@ namespace SimplePoll.Editor.Controllers
 {
 	[ApiController]
 	[Authorize]
-	[Route("api/polls")]
+	[Route("api/editor/polls")]
 	public class PollsController : ApiControllerBase
 	{
 		private readonly IPollService _pollService;
