@@ -8,18 +8,19 @@ using SimplePoll.Editor.Constants;
 
 namespace SimplePoll.Editor.Application.Handlers
 {
-	public class CreatePollCommandHandler : IRequestHandler<CreatePollCommand, int>
+	public class UpdatePollCommandHandler : IRequestHandler<UpdatePollCommand, int?>
 	{
 		private readonly IDatabaseRepository _databaseRepository;
 
-		public CreatePollCommandHandler(IDatabaseRepository databaseRepository)
+		public UpdatePollCommandHandler(IDatabaseRepository databaseRepository)
 		{
 			_databaseRepository = databaseRepository;
 		}
-
-		public Task<int> Handle(CreatePollCommand request, CancellationToken cancellationToken)
+		
+		public Task<int?> Handle(UpdatePollCommand request, CancellationToken cancellationToken)
 		{
-			return _databaseRepository.GetAsync<int>(Functions.Poll.Create,
+			return _databaseRepository.GetAsync<int?>(Functions.Poll.Update,
+				DbParameterInfoHelper.Create(nameof(request.Id), request.Id),
 				DbParameterInfoHelper.Create(nameof(request.Title), request.Title),
 				DbParameterInfoHelper.Create(nameof(request.Status), request.Status),
 				DbParameterInfoHelper.Create(nameof(request.Type), request.Type),
