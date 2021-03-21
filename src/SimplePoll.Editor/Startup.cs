@@ -27,6 +27,7 @@ namespace SimplePoll.Editor
 				.ConfigureAuth(Configuration)
 				.ConfigureDb(Configuration)
 				.ConfigureDi()
+				.ConfigureAutoMapper()
 				.ConfigureValidators()
 				.ConfigureSwagger();
 		}

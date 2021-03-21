@@ -10,5 +10,10 @@ namespace SimplePoll.Editor.Domain.Entities
 		public PollStatus Status { get; set; }
 		public PollType Type { get; set; }
 		public ICollection<PollOption> Options { get; set; }
+
+		public bool CanBeUpdated()
+		{
+			return Status == PollStatus.Draft;
+		}
 	}
 }
