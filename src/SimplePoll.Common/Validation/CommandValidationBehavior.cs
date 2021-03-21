@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
 
-namespace SimplePoll.Identity.Application.Validation
+namespace SimplePoll.Common.Validation
 {
 	public class CommandValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
 	{

@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SimplePoll.Common.Middlewares;
 using SimplePoll.Identity.Configurations;
-using SimplePoll.Identity.Middlewares;
 
 namespace SimplePoll.Identity
 {

@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SimplePoll.Common.Authentication.Extensions;
+using SimplePoll.Common.Middlewares;
 using SimplePoll.Editor.Configurations;
 
 namespace SimplePoll.Editor
@@ -24,15 +25,19 @@ namespace SimplePoll.Editor
 
 			services
 				.ConfigureAuth(Configuration)
+				.ConfigureDb(Configuration)
+				.ConfigureDi()
+				.ConfigureValidators()
 				.ConfigureSwagger();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
+			app.UseMiddleware<ErrorsHandlerMiddleware>();
+			
 			if (env.IsDevelopment())
 			{
-				app.UseDeveloperExceptionPage();
 				app.UseSwagger();
 				app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SimplePoll.Editor v1"));
 			}

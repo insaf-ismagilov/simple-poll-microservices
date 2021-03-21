@@ -5,7 +5,7 @@ using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
-namespace SimplePoll.Identity.Middlewares
+namespace SimplePoll.Common.Middlewares
 {
 	public class ErrorsHandlerMiddleware
 	{
