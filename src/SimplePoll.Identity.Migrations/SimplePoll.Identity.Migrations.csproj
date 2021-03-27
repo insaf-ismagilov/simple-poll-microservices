@@ -1,0 +1,57 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\SimplePoll.Common.Migrations\SimplePoll.Common.Migrations.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.Extensions.Configuration, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
+        <HintPath>C:\Program Files\dotnet\packs\Microsoft.AspNetCore.App.Ref\5.0.0\ref\net5.0\Microsoft.Extensions.Configuration.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="5.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="5.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="5.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Indexes" />
+      <Folder Include="Patches" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Tables\001_UserRoles.sql" />
+      <EmbeddedResource Include="Tables\001_UserRoles.sql" />
+      <None Remove="Tables\002_Users.sql" />
+      <EmbeddedResource Include="Tables\002_Users.sql" />
+      <None Remove="Data\001_UserRoles.sql" />
+      <EmbeddedResource Include="Data\001_UserRoles.sql" />
+      <None Remove="Data\002_Users.sql" />
+      <EmbeddedResource Include="Data\002_Users.sql" />
+      <None Remove="Functions\001_Users_GetById.sql" />
+      <EmbeddedResource Include="Functions\001_Users_GetById.sql" />
+      <None Remove="Functions\002_Users_Add.sql" />
+      <EmbeddedResource Include="Functions\002_Users_Add.sql" />
+      <None Remove="Functions\003_Users_Update.sql" />
+      <EmbeddedResource Include="Functions\003_Users_Update.sql" />
+      <None Remove="Functions\004_Users_GetByEmail.sql" />
+      <EmbeddedResource Include="Functions\004_Users_GetByEmail.sql" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="appsettings.json" />
+      <Content Include="appsettings.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
+</Project>

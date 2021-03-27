@@ -14,7 +14,7 @@ namespace SimplePoll.Common.Migrations
 			_upgraderSettings = upgraderSettings;
 		}
 
-		public UpgradeEngine CreateUpgrader()
+		public UpgradeEngine CreateUpgrader(Assembly assembly)
 		{
 			var connectionString = _upgraderSettings.ConnectionSettings.DatabaseConnectionString;
 
@@ -22,7 +22,7 @@ namespace SimplePoll.Common.Migrations
 
 			foreach (var pathSetting in _upgraderSettings.PathSettings)
 			{
-				builder.WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), script => script.StartsWith(pathSetting.Path),
+				builder.WithScriptsEmbeddedInAssembly(assembly, script => script.StartsWith(pathSetting.Path),
 					new SqlScriptOptions {ScriptType = pathSetting.ScriptType, RunGroupOrder = pathSetting.RunGroupOrder});
 			}
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Threading.Tasks;
 using DbUp;
 using Npgsql;
@@ -15,7 +16,7 @@ namespace SimplePoll.Common.Migrations
 			_upgraderSettings = upgraderSettings;
 		}
 
-		public bool TryExecute()
+		public bool TryExecute(Assembly assembly)
 		{
 			var connectionSettings = _upgraderSettings.ConnectionSettings;
 			
@@ -35,7 +36,7 @@ namespace SimplePoll.Common.Migrations
 
 			var upgrader = new DatabaseUpgrader(_upgraderSettings);
 
-			var upgradeResult = upgrader.CreateUpgrader().PerformUpgrade();
+			var upgradeResult = upgrader.CreateUpgrader(assembly).PerformUpgrade();
 			
 			if (!upgradeResult.Successful)
 			{

@@ -1,0 +1,2 @@
+INSERT INTO public.users (role_id, email, password_hash, first_name, last_name)
+VALUES (0, 'admin@example.com', /*Welcome01!*/ 'AQAAAAEAACcQAAAAEGCW8QS8ijZhAr9djNkr50wNu4eobp4SqJYs3/njFnJRlYXNcWIPQBKNMLwC3EjhVw==', 'Admin', 'Admin');
