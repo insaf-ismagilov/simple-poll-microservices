@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\SimplePoll.Common.Migrations\SimplePoll.Common.Migrations.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="5.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="5.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="5.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="appsettings.json" />
+      <Content Include="appsettings.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Data" />
+      <Folder Include="Indexes" />
+      <Folder Include="Patches" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Tables\001_Polls.sql" />
+      <EmbeddedResource Include="Tables\001_Polls.sql" />
+      <None Remove="Tables\002_PollOptions.sql" />
+      <EmbeddedResource Include="Tables\002_PollOptions.sql" />
+      <None Remove="Functions\001_Polls_Create.sql" />
+      <EmbeddedResource Include="Functions\001_Polls_Create.sql" />
+      <None Remove="Functions\002_Polls_Update.sql" />
+      <EmbeddedResource Include="Functions\002_Polls_Update.sql" />
+      <None Remove="Functions\003_Polls_GetById.sql" />
+      <EmbeddedResource Include="Functions\003_Polls_GetById.sql" />
+      <None Remove="Functions\004_Polls_GetAll.sql" />
+      <EmbeddedResource Include="Functions\004_Polls_GetAll.sql" />
+    </ItemGroup>
+
+</Project>
