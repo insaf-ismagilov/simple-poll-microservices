@@ -1,0 +1,16 @@
+﻿FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+WORKDIR /src
+
+COPY ./src/SimplePoll.Editor.Migrations ./SimplePoll.Editor.Migrations
+COPY ./src/SimplePoll.Common.Migrations ./SimplePoll.Common.Migrations
+
+WORKDIR /src/SimplePoll.Editor.Migrations
+RUN dotnet restore
+
+RUN dotnet publish -c Release -o out
+
+FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS runtime
+WORKDIR /app
+COPY --from=build /src/SimplePoll.Editor.Migrations/out ./
+
+ENTRYPOINT ["dotnet", "SimplePoll.Editor.Migrations.dll"]

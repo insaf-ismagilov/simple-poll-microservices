@@ -74,7 +74,7 @@ namespace SimplePoll.Common.Migrations
 
 		private static bool RepeatTryWaitConnection(ConnectionSettings connectionSettings)
 		{
-			const int tryCount = 2;
+			const int tryCount = 5;
 
 			for (var i = 0; i < tryCount; i++)
 			{

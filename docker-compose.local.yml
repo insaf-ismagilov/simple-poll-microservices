@@ -1,15 +1,46 @@
 ﻿version: "3.9"
 
 services:
-  identity:
+  simple_poll_identity_api:
     ports:
       - "5000:5000"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:5000
-  editor:
+      - ConnectionStrings:SimplePoll=Server=simple_poll_identity_db; Database=simple-poll-identity; User Id=postgres; Password=postgres;
+
+  simple_poll_identity_db:
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=simple-poll-identity
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./postgres-data-identity:/var/lib/postgresql/data
+
+  simple_poll_identity_migrations:
+    environment:
+      - DatabaseUpgraderSettings:ConnectionSettings:Server=simple_poll_identity_db
+
+  simple_poll_editor_api:
     ports:
       - "5001:5000"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:5000
+      - ConnectionStrings:SimplePoll=Server=simple_poll_editor_db; Database=simple-poll-editor; User Id=postgres; Password=postgres;
+
+  simple_poll_editor_db:
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_DB=simple-poll-editor
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./postgres-data-editor:/var/lib/postgresql/data
+
+  simple_poll_editor_migrations:
+    environment:
+      - DatabaseUpgraderSettings:ConnectionSettings:Server=simple_poll_editor_db

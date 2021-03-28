@@ -360,4 +360,6 @@ MigrationBackup/
 FodyWeavers.xsd
 
 .idea/
-postgres-data/
+
+postgres-data-editor/
+postgres-data-identity/

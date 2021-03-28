@@ -1,11 +1,38 @@
 ﻿version: "3.9"
 
 services:
-  identity:
+  simple_poll_identity_api:
     build:
       context: .
       dockerfile: src/SimplePoll.Identity/Dockerfile
-  editor:
+    depends_on:
+      - simple_poll_identity_db
+      - simple_poll_identity_migrations
+
+  simple_poll_identity_db:
+    image: postgres
+
+  simple_poll_identity_migrations:
+    build:
+      context: .
+      dockerfile: src/SimplePoll.Identity.Migrations/Dockerfile
+    depends_on:
+      - simple_poll_identity_db
+
+  simple_poll_editor_api:
     build:
       context: .
       dockerfile: src/SimplePoll.Editor/Dockerfile
+    depends_on:
+      - simple_poll_editor_db
+      - simple_poll_editor_migrations
+
+  simple_poll_editor_db:
+    image: postgres
+
+  simple_poll_editor_migrations:
+    build:
+      context: .
+      dockerfile: src/SimplePoll.Editor.Migrations/Dockerfile
+    depends_on:
+      - simple_poll_editor_db

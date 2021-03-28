@@ -3,6 +3,7 @@ WORKDIR /src
 
 COPY ./src/SimplePoll.Common ./SimplePoll.Common
 COPY ./src/SimplePoll.Common.DataAccess ./SimplePoll.Common.DataAccess
+COPY ./src/SimplePoll.Common.Authentication ./SimplePoll.Common.Authentication
 COPY ./src/SimplePoll.Editor ./SimplePoll.Editor
 
 WORKDIR /src/SimplePoll.Editor
