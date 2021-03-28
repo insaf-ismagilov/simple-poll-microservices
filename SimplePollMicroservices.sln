@@ -24,6 +24,7 @@ ProjectSection(SolutionItems) = preProject
 	docker-compose.local.yml = docker-compose.local.yml
 	docker-compose.yml = docker-compose.yml
 	README.md = README.md
+	local_run.bat = local_run.bat
 EndProjectSection
 EndProject
 Global
