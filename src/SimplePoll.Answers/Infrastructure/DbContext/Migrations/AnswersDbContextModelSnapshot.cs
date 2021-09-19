@@ -27,19 +27,23 @@ namespace SimplePoll.Answers.Infrastructure.DbContext.Migrations
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("timestamp without time zone");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp without time zone")
+                        .HasDefaultValueSql("timezone('utc'::text, now())");
 
                     b.Property<DateTime?>("LastModifiedDate")
-                        .HasColumnType("timestamp without time zone");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp without time zone")
+                        .HasDefaultValueSql("timezone('utc'::text, now())");
 
                     b.Property<int>("PollId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("PollOptionId")
+                    b.Property<int>("PollOptionId")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Value")
-                        .HasColumnType("text");
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 

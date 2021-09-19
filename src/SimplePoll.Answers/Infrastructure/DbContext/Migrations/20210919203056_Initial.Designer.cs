@@ -10,7 +10,7 @@ using SimplePoll.Answers.Infrastructure.DbContext;
 namespace SimplePoll.Answers.Infrastructure.DbContext.Migrations
 {
     [DbContext(typeof(AnswersDbContext))]
-    [Migration("20210919190643_Initial")]
+    [Migration("20210919203056_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,19 +29,23 @@ namespace SimplePoll.Answers.Infrastructure.DbContext.Migrations
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("timestamp without time zone");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp without time zone")
+                        .HasDefaultValueSql("timezone('utc'::text, now())");
 
                     b.Property<DateTime?>("LastModifiedDate")
-                        .HasColumnType("timestamp without time zone");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp without time zone")
+                        .HasDefaultValueSql("timezone('utc'::text, now())");
 
                     b.Property<int>("PollId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("PollOptionId")
+                    b.Property<int>("PollOptionId")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Value")
-                        .HasColumnType("text");
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 

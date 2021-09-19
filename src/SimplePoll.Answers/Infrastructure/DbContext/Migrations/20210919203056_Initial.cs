@@ -15,10 +15,10 @@ namespace SimplePoll.Answers.Infrastructure.DbContext.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     PollId = table.Column<int>(type: "integer", nullable: false),
-                    PollOptionId = table.Column<int>(type: "integer", nullable: true),
-                    Value = table.Column<string>(type: "text", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    LastModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
+                    PollOptionId = table.Column<int>(type: "integer", nullable: false),
+                    UserId = table.Column<int>(type: "integer", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, defaultValueSql: "timezone('utc'::text, now())"),
+                    LastModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true, defaultValueSql: "timezone('utc'::text, now())")
                 },
                 constraints: table =>
                 {
