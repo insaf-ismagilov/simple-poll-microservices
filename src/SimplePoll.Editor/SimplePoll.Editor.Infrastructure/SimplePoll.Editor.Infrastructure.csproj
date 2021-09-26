@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\SimplePoll.Common.DataAccess\SimplePoll.Common.DataAccess.csproj" />
+      <ProjectReference Include="..\SimplePoll.Editor.Domain\SimplePoll.Editor.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Database" />
+    </ItemGroup>
+
+</Project>
