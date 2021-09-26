@@ -15,17 +15,17 @@ namespace SimplePoll.Common.Validation
 			_validators = validators;
 		}
 
-		public Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
+		public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
 		{
 			if (_validators == null)
-				return next();
+				return await next();
 
 			foreach (var validator in _validators)
 			{
-				validator.ValidateAndThrow(request);
+				await validator.ValidateAndThrowAsync(request, cancellationToken);
 			}
 
-			return next();
+			return await next();
 		}
 	}
 }

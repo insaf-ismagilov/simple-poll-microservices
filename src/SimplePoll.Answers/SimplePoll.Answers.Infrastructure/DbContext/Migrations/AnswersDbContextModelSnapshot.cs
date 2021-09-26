@@ -2,7 +2,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SimplePoll.Answers.Infrastructure.DbContext;
@@ -10,10 +9,9 @@ using SimplePoll.Answers.Infrastructure.DbContext;
 namespace SimplePoll.Answers.Infrastructure.DbContext.Migrations
 {
     [DbContext(typeof(AnswersDbContext))]
-    [Migration("20210919203056_Initial")]
-    partial class Initial
+    partial class AnswersDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,7 +19,7 @@ namespace SimplePoll.Answers.Infrastructure.DbContext.Migrations
                 .HasAnnotation("ProductVersion", "5.0.10")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-            modelBuilder.Entity("SimplePoll.Answers.Domain.Entities.PollAnswer", b =>
+            modelBuilder.Entity("SimplePoll.Answers.WebApi.Domain.Entities.PollAnswer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

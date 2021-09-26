@@ -31,7 +31,7 @@ namespace SimplePoll.Answers
                 .ConfigureAutoMapper()
                 .ConfigureDi();
             
-            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "SimplePoll.Answers", Version = "v1" }); });
+            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "SimplePoll.Answers.WebApi", Version = "v1" }); });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,7 +42,7 @@ namespace SimplePoll.Answers
             if (env.IsDevelopment())
             {
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SimplePoll.Answers v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SimplePoll.Answers.WebApi v1"));
             }
 
             //app.UseHttpsRedirection();

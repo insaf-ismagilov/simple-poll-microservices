@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using SimplePoll.Common.Models;
 
 namespace SimplePoll.Answers.Domain.Entities

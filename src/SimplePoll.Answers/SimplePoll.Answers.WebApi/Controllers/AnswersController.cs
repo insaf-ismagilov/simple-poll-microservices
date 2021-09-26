@@ -1,7 +1,10 @@
 ﻿using System.Threading.Tasks;
+using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using SimplePoll.Answers.Application.Commands;
 using SimplePoll.Answers.Application.Models.Requests;
-using SimplePoll.Answers.Application.Services;
+using SimplePoll.Answers.Application.Queries;
 using SimplePoll.Common.Api;
 
 namespace SimplePoll.Answers.Controllers
@@ -10,17 +13,21 @@ namespace SimplePoll.Answers.Controllers
     [Route("api/answers")]
     public class AnswersController : ApiControllerBase
     {
-        private readonly IPollAnswerService _pollAnswerService;
+        private readonly IMediator _mediator;
+        private readonly IMapper _mapper;
 
-        public AnswersController(IPollAnswerService pollAnswerService)
+        public AnswersController(
+            IMediator mediator,
+            IMapper mapper)
         {
-            _pollAnswerService = pollAnswerService;
+            _mediator = mediator;
+            _mapper = mapper;
         }
 
         [HttpGet("id")]
         public async Task<IActionResult> GetById(int id)
         {
-            var result = await _pollAnswerService.GetByIdAsync(id);
+            var result = await _mediator.Send(new GetPollAnswerByIdQuery { Id = id });
 
             return CreateResponse(result);
         }
@@ -28,7 +35,8 @@ namespace SimplePoll.Answers.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateAnswer(CreatePollAnswerRequest request)
         {
-            var result = await _pollAnswerService.CreateAsync(request);
+            var command = _mapper.Map<CreatePollAnswerCommand>(request);
+            var result = await _mediator.Send(command);
 
             return CreateResponse(result);
         }
