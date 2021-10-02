@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\SimplePoll.Common.DataAccess\SimplePoll.Common.DataAccess.csproj" />
+      <ProjectReference Include="..\SimplePoll.Identity.Domain\SimplePoll.Identity.Domain.csproj" />
+    </ItemGroup>
+
+</Project>
