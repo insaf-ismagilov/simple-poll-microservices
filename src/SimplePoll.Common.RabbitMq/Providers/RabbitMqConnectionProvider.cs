@@ -4,6 +4,7 @@ using SimplePoll.Common.RabbitMq.Configurations;
 
 namespace SimplePoll.Common.RabbitMq.Providers
 {
+    
     public class RabbitMqConnectionProvider : IRabbitMqConnectionProvider
     {
         private readonly IOptions<RabbitMqConfiguration> _options;

@@ -8,12 +8,13 @@ namespace SimplePoll.Common.RabbitMq.Subscribers
     public class RabbitMqSubscriber : IRabbitMqSubscriber
     {
         private readonly IModel _channel;
-        private readonly string _queueName;
+        
+        public string QueueName { get; }
 
         public RabbitMqSubscriber(IModel channel, string queueName)
         {
             _channel = channel;
-            _queueName = queueName;
+            QueueName = queueName;
         }
 
         public void Subscribe(Func<BasicDeliverEventArgs, Task<bool>> func)
@@ -22,12 +23,12 @@ namespace SimplePoll.Common.RabbitMq.Subscribers
 
             consumer.Received += OnReceived(func);
 
-            _channel.BasicConsume(_queueName, false, consumer);
+            _channel.BasicConsume(QueueName, false, consumer);
         }
 
         private AsyncEventHandler<BasicDeliverEventArgs> OnReceived(Func<BasicDeliverEventArgs, Task<bool>> func)
         {
-            return async (model, ea) =>
+            return async (_, ea) =>
             {
                 try
                 {
