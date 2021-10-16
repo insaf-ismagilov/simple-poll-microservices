@@ -1,4 +1,4 @@
-﻿namespace SimplePoll.Editor.Domain.Models
+﻿namespace SimplePoll.Common.Models.Poll
 {
 	public class PollOptionDto
 	{

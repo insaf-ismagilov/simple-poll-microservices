@@ -1,4 +1,4 @@
-﻿using SimplePoll.Editor.Domain.Enums;
+﻿using SimplePoll.Common.Enums;
 
 namespace SimplePoll.Editor.Infrastructure.Database.Models
 {

@@ -2,7 +2,7 @@
 using SimplePoll.Common.Models;
 using SimplePoll.Common.Models.Poll;
 
-namespace SimplePoll.Editor.Application.Queries
+namespace SimplePoll.ApiGateway.Application.Queries
 {
 	public class GetPollByIdQuery : IRequest<ServiceResponse<PollDto>>
 	{

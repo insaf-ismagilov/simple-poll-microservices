@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using SimplePoll.Editor.Domain.Enums;
+using SimplePoll.Common.Enums;
 
-namespace SimplePoll.Editor.Domain.Models
+namespace SimplePoll.Common.Models.Poll
 {
 	public class PollDto
 	{

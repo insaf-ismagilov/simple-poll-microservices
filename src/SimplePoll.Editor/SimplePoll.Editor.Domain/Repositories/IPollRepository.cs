@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using SimplePoll.Common.Models.Poll;
 using SimplePoll.Editor.Domain.Entities;
-using SimplePoll.Editor.Domain.Models;
 
 namespace SimplePoll.Editor.Domain.Repositories
 {

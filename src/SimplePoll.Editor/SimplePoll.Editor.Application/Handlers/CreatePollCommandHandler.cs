@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using SimplePoll.Common.Models;
+using SimplePoll.Common.Models.Poll;
 using SimplePoll.Editor.Application.Commands;
-using SimplePoll.Editor.Domain.Models;
 using SimplePoll.Editor.Domain.Repositories;
 
 namespace SimplePoll.Editor.Application.Handlers

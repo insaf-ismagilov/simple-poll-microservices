@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using MediatR;
-using SimplePoll.Editor.Application.Models;
-using SimplePoll.Editor.Domain.Enums;
-using SimplePoll.Editor.Domain.Models;
+using SimplePoll.Common.Enums;
+using SimplePoll.Common.Models.Poll;
 
 namespace SimplePoll.Editor.Application.Commands
 {

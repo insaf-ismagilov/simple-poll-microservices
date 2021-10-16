@@ -36,7 +36,7 @@ namespace SimplePoll.Common.RabbitMq.DependencyInjection
             return services;
         }
 
-        public static IServiceCollection RegisterQueue(this IServiceCollection services, string exchangeName, string queueName)
+        public static IServiceCollection RegisterQueue(this IServiceCollection services, string exchangeName, string queueName, string routingKey)
         {
             using var serviceProvider = services.BuildServiceProvider();
 
@@ -44,7 +44,7 @@ namespace SimplePoll.Common.RabbitMq.DependencyInjection
 
             var channel = connectionProvider.CreateConnection();
             
-            channel.RegisterQueue(exchangeName, queueName);
+            channel.RegisterQueue(exchangeName, queueName, routingKey);
 
             return services;
         }

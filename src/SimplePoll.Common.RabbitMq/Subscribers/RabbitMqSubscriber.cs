@@ -46,8 +46,6 @@ namespace SimplePoll.Common.RabbitMq.Subscribers
 
         public void Dispose()
         {
-            _channel?.WaitForConfirms();
-            _channel?.Close();
         }
     }
 }

@@ -1,8 +1,7 @@
 ﻿using FluentValidation;
 using SimplePoll.Common.Models;
+using SimplePoll.Common.Models.Poll;
 using SimplePoll.Editor.Application.Commands;
-using SimplePoll.Editor.Application.Models;
-using SimplePoll.Editor.Domain.Models;
 
 namespace SimplePoll.Editor.Application.Validation
 {

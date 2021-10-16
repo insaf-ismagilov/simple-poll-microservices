@@ -5,7 +5,18 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Controllers" />
+      <ProjectReference Include="..\..\SimplePoll.Common.RabbitMq.Endpoints\SimplePoll.Common.RabbitMq.Endpoints.csproj" />
+      <ProjectReference Include="..\..\SimplePoll.Common.RabbitMq\SimplePoll.Common.RabbitMq.csproj" />
+      <ProjectReference Include="..\..\SimplePoll.Common\SimplePoll.Common.csproj" />
+      <ProjectReference Include="..\SimplePoll.ApiGateway.Application\SimplePoll.ApiGateway.Application.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.3" />
+        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.4" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="6.1.0" />
     </ItemGroup>
 
 </Project>

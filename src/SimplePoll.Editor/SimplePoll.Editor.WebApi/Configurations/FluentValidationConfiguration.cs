@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
+using SimplePoll.Common.Models.Poll;
 using SimplePoll.Editor.Application.Commands;
 using SimplePoll.Editor.Application.Models.Requests;
 using SimplePoll.Editor.Application.Validation;
-using SimplePoll.Editor.Domain.Models;
 
 namespace SimplePoll.Editor.Configurations
 {

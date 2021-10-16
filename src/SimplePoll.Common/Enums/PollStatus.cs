@@ -1,4 +1,4 @@
-﻿namespace SimplePoll.Editor.Domain.Enums
+﻿namespace SimplePoll.Common.Enums
 {
 	public enum PollStatus
 	{

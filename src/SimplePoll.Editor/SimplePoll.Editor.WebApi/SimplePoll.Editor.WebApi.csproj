@@ -17,6 +17,8 @@
     <ItemGroup>
       <ProjectReference Include="..\..\SimplePoll.Common.Authentication\SimplePoll.Common.Authentication.csproj" />
       <ProjectReference Include="..\..\SimplePoll.Common.DataAccess\SimplePoll.Common.DataAccess.csproj" />
+      <ProjectReference Include="..\..\SimplePoll.Common.RabbitMq.Endpoints\SimplePoll.Common.RabbitMq.Endpoints.csproj" />
+      <ProjectReference Include="..\..\SimplePoll.Common.RabbitMq\SimplePoll.Common.RabbitMq.csproj" />
       <ProjectReference Include="..\..\SimplePoll.Common\SimplePoll.Common.csproj" />
       <ProjectReference Include="..\SimplePoll.Editor.Application\SimplePoll.Editor.Application.csproj" />
       <ProjectReference Include="..\SimplePoll.Editor.Domain\SimplePoll.Editor.Domain.csproj" />

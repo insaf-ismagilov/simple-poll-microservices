@@ -17,14 +17,14 @@ namespace SimplePoll.Common.RabbitMq.Rpc
             _rpcConsumerFactory = rpcConsumerFactory;
         }
 
-        public void AddConsumerAction<TRequest, TResponse>(string publisherExchangeName, string subscriberQueueName, 
+        public void AddConsumerAction<TRequest, TResponse>(string publisherExchangeName, string subscriberQueueName, string routingKey,
             Func<TRequest, Task<TResponse>> action)
         {
             var consumer = _rpcConsumerFactory.Create(publisherExchangeName, subscriberQueueName);
             
             _rpcConsumers.Add(consumer);
             
-            consumer.Subscribe(action);
+            consumer.Subscribe(action, routingKey);
         }
 
         public void Dispose()

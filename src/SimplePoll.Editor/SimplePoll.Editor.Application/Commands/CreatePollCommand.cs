@@ -1,5 +1,5 @@
 ﻿using SimplePoll.Common.Models;
-using SimplePoll.Editor.Domain.Models;
+using SimplePoll.Common.Models.Poll;
 
 namespace SimplePoll.Editor.Application.Commands
 {

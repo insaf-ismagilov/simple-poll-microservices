@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using SimplePoll.Common.Enums;
 using SimplePoll.Common.Models;
-using SimplePoll.Editor.Domain.Enums;
 
 namespace SimplePoll.Editor.Domain.Entities
 {

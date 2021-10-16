@@ -6,7 +6,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SimplePoll.Common.Authentication.Extensions;
 using SimplePoll.Common.Middlewares;
+using SimplePoll.Common.RabbitMq;
+using SimplePoll.Common.RabbitMq.DependencyInjection;
+using SimplePoll.Common.RabbitMq.Endpoints;
 using SimplePoll.Editor.Configurations;
+using SimplePoll.Editor.Rpc;
 
 namespace SimplePoll.Editor
 {
@@ -30,7 +34,15 @@ namespace SimplePoll.Editor
 				.ConfigureDi()
 				.ConfigureAutoMapper()
 				.ConfigureValidators()
-				.ConfigureSwagger();
+				.ConfigureSwagger()
+				.AddRabbitMq(Configuration);
+
+			services
+				.RegisterExchange(RpcEndpoints.PollGetById.Exchange)
+				.RegisterQueue(RpcEndpoints.PollGetById.Exchange, RpcEndpoints.PollGetById.RequestQueue, RoutingKeys.Request)
+				.RegisterQueue(RpcEndpoints.PollGetById.Exchange, RpcEndpoints.PollGetById.ResponseQueue, RoutingKeys.Response);
+
+			services.AddHostedService<RpcServerHostedService>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

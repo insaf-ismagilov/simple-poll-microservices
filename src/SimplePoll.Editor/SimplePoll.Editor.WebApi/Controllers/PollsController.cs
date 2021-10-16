@@ -2,14 +2,13 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SimplePoll.Common.Api;
+using SimplePoll.Common.Models.Poll;
 using SimplePoll.Editor.Application.Commands;
 using SimplePoll.Editor.Application.Models.Requests;
 using SimplePoll.Editor.Application.Queries;
-using SimplePoll.Editor.Domain.Models;
 
 namespace SimplePoll.Editor.Controllers
 {

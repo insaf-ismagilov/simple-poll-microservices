@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using MediatR;
 using SimplePoll.Common.Models;
-using SimplePoll.Editor.Domain.Entities;
-using SimplePoll.Editor.Domain.Models;
+using SimplePoll.Common.Models.Poll;
 
 namespace SimplePoll.Editor.Application.Queries
 {
