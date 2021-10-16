@@ -32,7 +32,6 @@ namespace SimplePoll.Common.RabbitMq.Rpc
             _rabbitMqSubscriber.Subscribe(OnMessageReceived);
         }
 
-        // TODO: Add logging, timeout.
         public async Task<TResponse> CallAsync<TRequest, TResponse>(TRequest request, string routingKey = "")
         {
             var tcs = new TaskCompletionSource<string>();
@@ -57,7 +56,6 @@ namespace SimplePoll.Common.RabbitMq.Rpc
             return JsonConvert.DeserializeObject<TResponse>(response);
         }
 
-        // TODO: Add logging.
         private Task<bool> OnMessageReceived(BasicDeliverEventArgs args)
         {
             var correlationId = args.BasicProperties.CorrelationId;
