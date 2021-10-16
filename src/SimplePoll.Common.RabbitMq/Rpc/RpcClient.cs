@@ -7,7 +7,7 @@ using RabbitMQ.Client.Events;
 using SimplePoll.Common.RabbitMq.Publishers;
 using SimplePoll.Common.RabbitMq.Subscribers;
 
-namespace SimplePoll.Common.RabbitMq.Clients
+namespace SimplePoll.Common.RabbitMq.Rpc
 {
     public class RpcClient : IRpcClient
     {

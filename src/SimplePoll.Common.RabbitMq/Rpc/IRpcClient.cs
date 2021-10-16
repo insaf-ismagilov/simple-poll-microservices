@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace SimplePoll.Common.RabbitMq.Clients
+namespace SimplePoll.Common.RabbitMq.Rpc
 {
     public interface IRpcClient
     {
