@@ -15,6 +15,8 @@ namespace SimplePoll.Common.RabbitMq.DependencyInjection
             services.AddSingleton<IRabbitMqConnectionProvider, RabbitMqConnectionProvider>();
             services.AddSingleton<IRabbitMqPublisherFactory, RabbitMqPublisherFactory>();
             services.AddSingleton<IRabbitMqSubscriberFactory, RabbitMqSubscriberFactory>();
+            services.AddSingleton<IRabbitMqRpcClientFactory, RabbitMqRpcClientFactory>();
+            services.AddSingleton<IRabbitMqRpcConsumerFactory, RabbitMqRpcConsumerFactory>();
 
             return services;
         }
