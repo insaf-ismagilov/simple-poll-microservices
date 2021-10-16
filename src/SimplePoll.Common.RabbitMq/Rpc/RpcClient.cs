@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -15,6 +16,8 @@ namespace SimplePoll.Common.RabbitMq.Rpc
         private readonly ILogger<RpcClient> _logger;
         private readonly IRabbitMqPublisher _rabbitMqPublisher;
         private readonly IRabbitMqSubscriber _rabbitMqSubscriber;
+
+        private const int TIMEOUT_MS = 10000;
 
         private readonly ConcurrentDictionary<string, TaskCompletionSource<string>> _pendingMessages;
 
@@ -35,8 +38,11 @@ namespace SimplePoll.Common.RabbitMq.Rpc
         public async Task<TResponse> CallAsync<TRequest, TResponse>(TRequest request, string routingKey = "")
         {
             var tcs = new TaskCompletionSource<string>();
-            var correlationId = Guid.NewGuid().ToString();
 
+            var ct = new CancellationTokenSource(TimeSpan.FromMilliseconds(TIMEOUT_MS));
+            ct.Token.Register(() => tcs.TrySetCanceled(), false);
+            
+            var correlationId = Guid.NewGuid().ToString();
             _pendingMessages[correlationId] = tcs;
 
             _logger.LogInformation("RPC request {@Data}", new
