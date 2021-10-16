@@ -1,4 +1,5 @@
-﻿using SimplePoll.Common.RabbitMq.Rpc;
+﻿using Microsoft.Extensions.Logging;
+using SimplePoll.Common.RabbitMq.Rpc;
 
 namespace SimplePoll.Common.RabbitMq.Factories
 {
@@ -6,13 +7,16 @@ namespace SimplePoll.Common.RabbitMq.Factories
     {
         private readonly IRabbitMqPublisherFactory _publisherFactory;
         private readonly IRabbitMqSubscriberFactory _rabbitMqSubscriberFactory;
+        private readonly ILoggerFactory _loggerFactory;
 
         public RabbitMqRpcConsumerFactory(
             IRabbitMqPublisherFactory publisherFactory,
-            IRabbitMqSubscriberFactory subscriberFactory)
+            IRabbitMqSubscriberFactory subscriberFactory,
+            ILoggerFactory loggerFactory)
         {
             _publisherFactory = publisherFactory;
             _rabbitMqSubscriberFactory = subscriberFactory;
+            _loggerFactory = loggerFactory;
         }
 
         public IRpcConsumer Create(string publisherExchangeName, string subscriberQueueName)
@@ -20,7 +24,7 @@ namespace SimplePoll.Common.RabbitMq.Factories
             var publisher = _publisherFactory.CreatePublisher(publisherExchangeName);
             var subscriber = _rabbitMqSubscriberFactory.CreateSubscriber(subscriberQueueName);
 
-            return new RpcConsumer(publisher, subscriber);
+            return new RpcConsumer(_loggerFactory.CreateLogger<RpcConsumer>(), publisher, subscriber);
         }
     }
 }
