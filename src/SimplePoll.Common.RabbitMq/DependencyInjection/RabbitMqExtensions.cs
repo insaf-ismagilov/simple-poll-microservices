@@ -4,6 +4,7 @@ using SimplePoll.Common.RabbitMq.Configurations;
 using SimplePoll.Common.RabbitMq.Factories;
 using SimplePoll.Common.RabbitMq.Providers;
 using SimplePoll.Common.RabbitMq.Registration;
+using SimplePoll.Common.RabbitMq.Rpc;
 
 namespace SimplePoll.Common.RabbitMq.DependencyInjection
 {
@@ -17,6 +18,7 @@ namespace SimplePoll.Common.RabbitMq.DependencyInjection
             services.AddSingleton<IRabbitMqSubscriberFactory, RabbitMqSubscriberFactory>();
             services.AddSingleton<IRabbitMqRpcClientFactory, RabbitMqRpcClientFactory>();
             services.AddSingleton<IRabbitMqRpcConsumerFactory, RabbitMqRpcConsumerFactory>();
+            services.AddSingleton<IRpcServer, RpcServer>();
 
             return services;
         }

@@ -38,5 +38,11 @@ namespace SimplePoll.Common.RabbitMq.Rpc
             
             return true;
         }
+
+        public void Dispose()
+        {
+            _rabbitMqPublisher?.Dispose();
+            _rabbitMqSubscriber?.Dispose();
+        }
     }
 }
