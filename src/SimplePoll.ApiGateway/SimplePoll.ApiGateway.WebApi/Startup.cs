@@ -38,7 +38,10 @@ namespace SimplePoll.ApiGateway.WebApi
             services
                 .RegisterExchange(RpcEndpoints.PollGetById.Exchange)
                 .RegisterQueue(RpcEndpoints.PollGetById.Exchange, RpcEndpoints.PollGetById.RequestQueue, RoutingKeys.Request)
-                .RegisterQueue(RpcEndpoints.PollGetById.Exchange, RpcEndpoints.PollGetById.ResponseQueue, RoutingKeys.Response);
+                .RegisterQueue(RpcEndpoints.PollGetById.Exchange, RpcEndpoints.PollGetById.ResponseQueue, RoutingKeys.Response)
+                .RegisterExchange(RpcEndpoints.PollGetAll.Exchange)
+                .RegisterQueue(RpcEndpoints.PollGetAll.Exchange, RpcEndpoints.PollGetAll.RequestQueue, RoutingKeys.Request)
+                .RegisterQueue(RpcEndpoints.PollGetAll.Exchange, RpcEndpoints.PollGetAll.ResponseQueue, RoutingKeys.Response);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
@@ -27,15 +28,8 @@ namespace SimplePoll.Editor.Rpc
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            Func<GetPollByIdQuery, Task<ServiceResponse<PollDto>>> pollGetByIdAction = query =>
-            {
-                using var scope = _serviceScopeFactory.CreateScope();
-                var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
-
-                return mediator.Send(query, cancellationToken);
-            };
-
-            _rpcConsumer.Subscribe(pollGetByIdAction, RpcEndpoints.PollGetById.RequestQueue);
+            _rpcConsumer.Subscribe(GetScopedAction<GetPollByIdQuery, ServiceResponse<PollDto>>(), RpcEndpoints.PollGetById.RequestQueue);
+            _rpcConsumer.Subscribe(GetScopedAction<GetAllPollsQuery, ServiceResponse<ICollection<PollDto>>>(), RpcEndpoints.PollGetAll.RequestQueue);
 
             return Task.CompletedTask;
         }
@@ -43,6 +37,19 @@ namespace SimplePoll.Editor.Rpc
         public Task StopAsync(CancellationToken cancellationToken)
         {
             return Task.CompletedTask;
+        }
+
+        private Func<TRequest, Task<TResponse>> GetScopedAction<TRequest, TResponse>() where TRequest : IRequest<TResponse>
+        {
+            Func<TRequest, Task<TResponse>> action = query =>
+            {
+                using var scope = _serviceScopeFactory.CreateScope();
+                var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
+
+                return mediator.Send(query);
+            };
+
+            return action;
         }
     }
 }
