@@ -3,9 +3,8 @@ using RabbitMQ.Client;
 
 namespace SimplePoll.Common.RabbitMq.Publishers
 {
-    public interface IRabbitMqPublisher : IDisposable
+    public interface IRabbitMqPublisher
     {
-        string ExchangeName { get; }
-        void Publish<T>(T message, string routingKey = "", string replyTo = null, string correlationId = null);
+        void Publish<T>(T message, string exchangeName, string routingKey = "", string replyTo = null, string correlationId = null);
     }
 }

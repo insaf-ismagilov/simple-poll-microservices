@@ -6,25 +6,24 @@ using SimplePoll.Common.Models;
 using SimplePoll.Common.Models.Poll;
 using SimplePoll.Common.RabbitMq;
 using SimplePoll.Common.RabbitMq.Endpoints;
-using SimplePoll.Common.RabbitMq.Factories;
+using SimplePoll.Common.RabbitMq.Rpc;
 
 namespace SimplePoll.ApiGateway.Application.Handlers
 {
     public class GetPollByIdQueryHandler : IRequestHandler<GetPollByIdQuery, ServiceResponse<PollDto>>
     {
-        private readonly IRabbitMqRpcClientFactory _rpcClientFactory;
+        private readonly IRpcClient _rpcClient;
 
-        public GetPollByIdQueryHandler(IRabbitMqRpcClientFactory rpcClientFactory)
+        public GetPollByIdQueryHandler(IRpcClient rpcClient)
         {
-            _rpcClientFactory = rpcClientFactory;
+            _rpcClient = rpcClient;
         }
-        
+
         public async Task<ServiceResponse<PollDto>> Handle(GetPollByIdQuery request, CancellationToken cancellationToken)
         {
-            using var client = _rpcClientFactory.Create(RpcEndpoints.PollGetById.Exchange, RpcEndpoints.PollGetById.ResponseQueue);
+            var result = await _rpcClient.CallAsync<GetPollByIdQuery, ServiceResponse<PollDto>>(request, RpcEndpoints.PollGetById.Exchange,
+                RpcEndpoints.PollGetById.ResponseQueue, RoutingKeys.Request);
 
-            var result = await client.CallAsync<GetPollByIdQuery, ServiceResponse<PollDto>>(request, RoutingKeys.Request);
-            
             return result;
         }
     }

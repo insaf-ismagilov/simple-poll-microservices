@@ -1,10 +1,11 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SimplePoll.Common.RabbitMq.Configurations;
-using SimplePoll.Common.RabbitMq.Factories;
 using SimplePoll.Common.RabbitMq.Providers;
+using SimplePoll.Common.RabbitMq.Publishers;
 using SimplePoll.Common.RabbitMq.Registration;
 using SimplePoll.Common.RabbitMq.Rpc;
+using SimplePoll.Common.RabbitMq.Subscribers;
 
 namespace SimplePoll.Common.RabbitMq.DependencyInjection
 {
@@ -14,11 +15,10 @@ namespace SimplePoll.Common.RabbitMq.DependencyInjection
         {
             services.Configure<RabbitMqConfiguration>(configuration.GetSection(nameof(RabbitMqConfiguration)));
             services.AddSingleton<IRabbitMqConnectionProvider, RabbitMqConnectionProvider>();
-            services.AddSingleton<IRabbitMqPublisherFactory, RabbitMqPublisherFactory>();
-            services.AddSingleton<IRabbitMqSubscriberFactory, RabbitMqSubscriberFactory>();
-            services.AddSingleton<IRabbitMqRpcClientFactory, RabbitMqRpcClientFactory>();
-            services.AddSingleton<IRabbitMqRpcConsumerFactory, RabbitMqRpcConsumerFactory>();
-            services.AddSingleton<IRpcServer, RpcServer>();
+            services.AddSingleton<IRabbitMqPublisher, RabbitMqPublisher>();
+            services.AddSingleton<IRabbitMqSubscriber, RabbitMqSubscriber>();
+            services.AddSingleton<IRpcClient, RpcClient>();
+            services.AddSingleton<IRpcConsumer, RpcConsumer>();
 
             return services;
         }
@@ -30,7 +30,7 @@ namespace SimplePoll.Common.RabbitMq.DependencyInjection
             var connectionProvider = serviceProvider.GetRequiredService<IRabbitMqConnectionProvider>();
 
             var channel = connectionProvider.CreateConnection();
-            
+
             channel.RegisterExchange(exchangeName);
 
             return services;
@@ -43,7 +43,7 @@ namespace SimplePoll.Common.RabbitMq.DependencyInjection
             var connectionProvider = serviceProvider.GetRequiredService<IRabbitMqConnectionProvider>();
 
             var channel = connectionProvider.CreateConnection();
-            
+
             channel.RegisterQueue(exchangeName, queueName, routingKey);
 
             return services;

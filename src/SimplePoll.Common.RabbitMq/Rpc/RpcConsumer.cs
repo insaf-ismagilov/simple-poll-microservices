@@ -25,12 +25,12 @@ namespace SimplePoll.Common.RabbitMq.Rpc
             _rabbitMqSubscriber = rabbitMqSubscriber;
         }
 
-        public void Subscribe<TRequest, TResponse>(Func<TRequest, Task<TResponse>> action, string routingKey)
+        public void Subscribe<TRequest, TResponse>(Func<TRequest, Task<TResponse>> action, string queueName)
         {
-            _rabbitMqSubscriber.Subscribe(args => OnMessageReceived(args, action, routingKey));
+            _rabbitMqSubscriber.Subscribe(queueName, args => OnMessageReceived(args, action));
         }
 
-        private async Task<bool> OnMessageReceived<TRequest, TResponse>(BasicDeliverEventArgs args, Func<TRequest, Task<TResponse>> action, string routingKey)
+        private async Task<bool> OnMessageReceived<TRequest, TResponse>(BasicDeliverEventArgs args, Func<TRequest, Task<TResponse>> action)
         {
             _logger.LogInformation("Received RPC request {@Data}", new
             {
@@ -43,7 +43,8 @@ namespace SimplePoll.Common.RabbitMq.Rpc
 
             var response = await action(request);
 
-            _rabbitMqPublisher.Publish(response, routingKey, correlationId: args.BasicProperties.CorrelationId);
+            _rabbitMqPublisher.Publish(response, "", args.BasicProperties.ReplyTo, 
+                correlationId: args.BasicProperties.CorrelationId);
 
             _logger.LogInformation("Published RPC response {@Data}", new
             {
@@ -51,12 +52,6 @@ namespace SimplePoll.Common.RabbitMq.Rpc
             });
 
             return true;
-        }
-
-        public void Dispose()
-        {
-            _rabbitMqPublisher?.Dispose();
-            _rabbitMqSubscriber?.Dispose();
         }
     }
 }

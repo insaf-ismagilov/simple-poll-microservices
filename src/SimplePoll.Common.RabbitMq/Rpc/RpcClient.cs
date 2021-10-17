@@ -31,17 +31,17 @@ namespace SimplePoll.Common.RabbitMq.Rpc
             _rabbitMqSubscriber = rabbitMqSubscriber;
 
             _pendingMessages = new ConcurrentDictionary<string, TaskCompletionSource<string>>();
-
-            _rabbitMqSubscriber.Subscribe(OnMessageReceived);
         }
 
-        public async Task<TResponse> CallAsync<TRequest, TResponse>(TRequest request, string routingKey = "")
+        public async Task<TResponse> CallAsync<TRequest, TResponse>(TRequest request, string exchangeName, string subscriberQueueName, string routingKey = "")
         {
+            _rabbitMqSubscriber.Subscribe(subscriberQueueName, OnMessageReceived);
+
             var tcs = new TaskCompletionSource<string>();
 
             var ct = new CancellationTokenSource(TimeSpan.FromMilliseconds(TIMEOUT_MS));
             ct.Token.Register(() => tcs.TrySetCanceled(), false);
-            
+
             var correlationId = Guid.NewGuid().ToString();
             _pendingMessages[correlationId] = tcs;
 
@@ -50,7 +50,7 @@ namespace SimplePoll.Common.RabbitMq.Rpc
                 CorrelationId = correlationId
             });
 
-            _rabbitMqPublisher.Publish(request, routingKey, _rabbitMqSubscriber.QueueName, correlationId);
+            _rabbitMqPublisher.Publish(request, exchangeName, routingKey, subscriberQueueName, correlationId);
 
             var response = await tcs.Task;
 
@@ -74,12 +74,6 @@ namespace SimplePoll.Common.RabbitMq.Rpc
             }
 
             return Task.FromResult(true);
-        }
-
-        public void Dispose()
-        {
-            _rabbitMqPublisher?.Dispose();
-            _rabbitMqSubscriber?.Dispose();
         }
     }
 }
